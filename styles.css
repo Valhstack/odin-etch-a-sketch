@@ -1,0 +1,16 @@
+#sketchGrid{
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 960px;
+
+    background-color: bisque;
+}
+
+.square{
+    box-sizing: border-box;
+    width: 60px;
+    height: 60px;
+
+    border: 1px solid black;
+}
