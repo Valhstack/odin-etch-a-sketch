@@ -1,18 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <title>Odin: Etch-A-Sketch Project</title>
 </head>
-<body>
-    <div id="sketchGrid">
 
+<body>
+    <!-- Main screen -->
+    <div id="mainScreen">
+        <h1>Etch-a-Sketch</h1>
+
+        <label for="gridSize">Define grid size (from 1 to 100)</label>
+        <input type="range" id="gridSize" min="0" max="100" step="4">
+
+        <button id="startSketch">Start sketching</button>
     </div>
 
-    <script src="./generateGrid.js"></script>
-    <script src="./hoveringListener.js"></script>
-    <script src="./clickListener.js"></script>
+    <div id="gridMainScreen" class="inactive gridScreen">
+        <!-- Grid -->
+        <div id="sketchGrid"></div>
+
+        <div id="helperItems">
+            <button id="resetSketch">Reset sketch</button>
+        </div>
+    </div>
+
+
+    <script src="./scripts/helperFunctions.js"></script>
+    <script src="./scripts/generateGrid.js"></script>
+    <script src="./scripts/generateGrid2_0.js"></script>
+    <script src="./scripts/hoveringListener.js"></script>
+    <script src="./scripts/clickListener.js"></script>
+    <script src="./scripts/resetButtonListener.js"></script>
 </body>
+
 </html>
