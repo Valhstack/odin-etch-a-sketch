@@ -13,9 +13,6 @@
     <div id="mainScreen">
         <h1>Etch-a-Sketch</h1>
 
-        <label for="gridSize">Define grid size (from 1 to 100)</label>
-        <input type="range" id="gridSize" min="0" max="100" step="4">
-
         <button id="startSketch">Start sketching</button>
     </div>
 
@@ -24,14 +21,25 @@
         <div id="sketchGrid"></div>
 
         <div id="helperItems">
+            <div class="gridSizeWrapper">
+                <label for="gridSize">Define grid size (from 1 to 100)</label>
+                <input type="range" id="gridSize" class="gridRange" list="stepList" min="4" max="64" value="4">
+                <datalist id="stepList">
+                    <option>4</option>
+                    <option>8</option>
+                    <option>16</option>
+                    <option>32</option>
+                    <option>64</option>
+                </datalist>
+            </div>
+
             <button id="resetSketch">Reset sketch</button>
         </div>
     </div>
 
-
     <script src="./scripts/helperFunctions.js"></script>
+    <script src="./scripts/startButtonListener.js"></script>
     <script src="./scripts/generateGrid.js"></script>
-    <script src="./scripts/generateGrid2_0.js"></script>
     <script src="./scripts/hoveringListener.js"></script>
     <script src="./scripts/clickListener.js"></script>
     <script src="./scripts/resetButtonListener.js"></script>
