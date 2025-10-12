@@ -1,8 +1,15 @@
 const sketchGrid = document.getElementById("sketchGrid");
-let hoverEnabled = true;
+let hoverEnabled = false;
 
 sketchGrid.addEventListener("mouseover", (event) => {
-    if (hoverEnabled) {
-        event.target.style.backgroundColor = "blue";
+    if (!colorPicked) {
+        color = "blue";
+    }
+    
+    if (hoverEnabled && !eraserEnabled) {
+        event.target.style.backgroundColor = color;
+    }
+    else if (hoverEnabled && eraserEnabled) {
+        event.target.style.backgroundColor = "#2c3e50";
     }
 })

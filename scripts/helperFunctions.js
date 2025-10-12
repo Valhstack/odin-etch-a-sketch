@@ -17,6 +17,9 @@ function defaultGrid() {
             square.classList.add("square");
             square.style.width = 128 + "px";
             square.style.height = 128 + "px";
+
+            gridSizeLabel.textContent = "4 x 4";
+
             sketchContainer.appendChild(square);
         }
     }

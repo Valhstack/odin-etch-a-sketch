@@ -1,9 +1,8 @@
 const gridSize = document.getElementById("gridSize");
 const gridSizeSections = document.getElementById("stepList");
-const allowedValues = Array.from(gridSizeSections.querySelectorAll('option'))
-    .map(opt => parseFloat(opt.value))
-    .filter(v => !isNaN(v))
-    .sort((a, b) => a - b);
+const allowedValues = Array.from(gridSizeSections.querySelectorAll('option')).map(opt => parseFloat(opt.value)).filter(v => !isNaN(v)).sort((a, b) => a - b);
+
+const gridSizeLabel = document.getElementById("gridSizeLabel");
 
 gridSize.addEventListener('input', () => {
     let child = sketchContainer.lastElementChild;
@@ -28,6 +27,9 @@ gridSize.addEventListener('input', () => {
             square.classList.add("square");
             square.style.width = squareSize + "px";
             square.style.height = squareSize + "px";
+
+            gridSizeLabel.textContent = gridSize.value + " x " + gridSize.value;
+
             sketchContainer.appendChild(square);
         }
     }

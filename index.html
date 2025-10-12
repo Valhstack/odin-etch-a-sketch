@@ -9,40 +9,69 @@
 </head>
 
 <body>
-    <!-- Main screen -->
-    <div id="mainScreen">
-        <h1>Etch-a-Sketch</h1>
+    <main>
+        <!-- Main screen -->
+        <div id="mainScreen">
+            <h1 class="initialState headerAppearAnimation">Etch-a-Sketch</h1>
 
-        <button id="startSketch">Start sketching</button>
-    </div>
-
-    <div id="gridMainScreen" class="inactive gridScreen">
-        <!-- Grid -->
-        <div id="sketchGrid"></div>
-
-        <div id="helperItems">
-            <div class="gridSizeWrapper">
-                <label for="gridSize">Define grid size (from 1 to 100)</label>
-                <input type="range" id="gridSize" class="gridRange" list="stepList" min="4" max="64" value="4">
-                <datalist id="stepList">
-                    <option>4</option>
-                    <option>8</option>
-                    <option>16</option>
-                    <option>32</option>
-                    <option>64</option>
-                </datalist>
+            <div id="mainScreenText" class="mainScreenTextWrapper">
+                <p class="text initialState textAppear show">Draw it, color it, keep it!</p>
+                <p class="text initialState textAppear show">Design on a grid and save your artwork to your device in one tap.</p>
             </div>
 
-            <button id="resetSketch">Reset sketch</button>
+            <button id="startSketch" class="buttonStyle initialState buttonAppeareAnimation show">Start sketching</button>
+
+            <p class="text initialState textAppear" id="textHint">Draw with a tap! Begin anywhere, pause and reposition, then tap again to resume.</p>
         </div>
-    </div>
+
+        <div id="gridMainScreen" class="inactive initialState gridScreen gridScreenAnimation">
+            <!-- Grid -->
+            <div id="sketchGrid"></div>
+
+            <div id="helperItems">
+                <div class="gridSizeWrapper">
+                    <label for="'gridSize">Change grid size:</label>
+                    <label for="gridSize"><span id="gridSizeLabel"></span></label>
+                    <input type="range" id="gridSize" class="gridRange" list="stepList" min="4" max="64" value="4">
+                    <datalist id="stepList" class="desktop">
+                        <option>4</option>
+                        <option>8</option>
+                        <option>16</option>
+                        <option>32</option>
+                        <option>64</option>
+                    </datalist>
+                </div>
+
+                <button id="resetSketch" class="buttonStyle buttonClickAnimation">Reset sketch</button>
+
+                <button id="eraserButton" class="buttonStyle buttonClickAnimation"><span id="eraserButtonLabel">Erase</span></button>
+
+                <button id="exportButton" class="buttonStyle buttonClickAnimation">Export as Image</button>
+
+                <div class="colorPickerWrapper">
+                    <label for="colorPicker">Color: </label>
+                    <input type="color" value="blue" id="colorPicker" autocomplete="off">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p class="text" id="footerText">&#169; 2025 Copyright Valhstack</p>
+    </footer>
 
     <script src="./scripts/helperFunctions.js"></script>
     <script src="./scripts/startButtonListener.js"></script>
     <script src="./scripts/generateGrid.js"></script>
+    <script src="./scripts/colorPickerListener.js"></script>
     <script src="./scripts/hoveringListener.js"></script>
     <script src="./scripts/clickListener.js"></script>
     <script src="./scripts/resetButtonListener.js"></script>
+    <script src="./scripts/eraserButtonListener.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="./scripts/exportButtonListener.js"></script>
 </body>
 
 </html>

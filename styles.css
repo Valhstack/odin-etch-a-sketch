@@ -1,10 +1,160 @@
+@font-face {
+    font-family: "Raleway";
+    src: url("./fonts/Raleway.ttf");
+}
+
+@font-face {
+    font-family: "Lato Light";
+    src: url("./fonts/Lato-Light.ttf");
+}
+
+@font-face {
+    font-family: "Lato Bold";
+    src: url("./fonts/Lato-Bold.ttf");
+}
+
+@keyframes textAppear {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+
+    25% {
+        opacity: 0.8;
+        transform: scaleY(50px);
+    }
+
+    50% {
+        scale: 1.25;
+        filter: brightness(110%);
+    }
+
+    100% {
+        opacity: 1;
+        scale: 1;
+        filter: brightness(100%);
+        transform: scaleY(10px);
+    }
+}
+
+@keyframes buttonAppear {
+    from {
+        scale: 0.8;
+        opacity: 0;
+    }
+
+    to {
+        scale: 1;
+        opacity: 1;
+    }
+}
+
+@keyframes buttonClick {
+    from {
+        scale: 0.8;
+    }
+
+    to {
+        scale: 1.2;
+    }
+}
+
+@keyframes gridAppear {
+    0% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    25% {
+        opacity: 0.8;
+    }
+
+    50% {
+        scale: 1.25;
+        filter: brightness(110%);
+    }
+
+    100% {
+        opacity: 1;
+        scale: 1;
+        filter: brightness(100%);
+        transform: scaleX(10px);
+    }
+}
+
+.gridScreenAnimation.show{
+    animation: gridAppear 0.6s ease-in-out 2.2s forwards;
+}
+
+.buttonClickAnimation:active {
+    animation: buttonClick 0.3s ease-in-out;
+}
+
+.buttonAppeareAnimation.show {
+    animation: buttonAppear 0.5s ease-out 2.5s forwards;
+}
+
+.headerAppearAnimation {
+    animation: textAppear 0.6s ease-in-out 0.5s forwards;
+}
+
+.textAppear.show {
+    animation: textAppear 0.6s ease-in-out 1.5s forwards;
+}
+
+.initialState {
+    opacity: 0;
+}
+
 body {
     background-color: #243447;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    color: #E0E0E0;
+
+    font-family: "Lato Light";
+
+    min-height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 0;
+}
+
+main {
+    flex: 1 0 auto;
+    padding: 32px 64px;
+}
+
+footer {
+    padding-bottom: 32px;
+}
+
+h1 {
+    font-family: "Raleway";
+    font-size: 36px;
+
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+
+label {
+    font-size: 20px;
 }
 
 #sketchGrid {
     display: flex;
     flex-wrap: wrap;
+
+    margin-left: 144px;
 
     width: 512px;
     height: 512px;
@@ -18,15 +168,34 @@ body {
     flex-direction: column;
 
     align-items: center;
+
+    gap: 50px
+}
+
+#footerText {
+    font-size: 16px;
 }
 
 .gridScreen {
     display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    margin-top: 50px;
+}
+
+.text {
+    font-size: 20px;
+    font-weight: 400;
 }
 
 #helperItems {
     display: flex;
     flex-direction: column;
+
+    gap: 10px;
 }
 
 .square {
@@ -41,6 +210,31 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
+
+    align-items: center;
+}
+
+.buttonStyle {
+    background-color: #3B4A5A;
+    font-family: "Lato Bold";
+    border-radius: 8px;
+    border: 0;
+    color: #E0E0E0;
+    padding: 12px 30px;
+    font-size: 15px;
+    font-weight: 500;
+
+    letter-spacing: 0.5px;
+}
+
+.buttonStyle:hover {
+    background-color: #4A5B6C;
+}
+
+.mainScreenTextWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .inactive {
@@ -48,11 +242,13 @@ body {
 }
 
 .gridRange {
+    appearance: none;
     -webkit-appearance: none;
     width: 100%;
-    height: 15px;
+    height: 8px;
     border-radius: 5px;
     background: #394B5E;
+    box-shadow: 0 4px 12px rgba(20, 30, 45, 0.45);
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -60,18 +256,21 @@ body {
 }
 
 .gridRange:hover {
-    background: #4A6076;
+    background-color: #4A6076;
+    background-image: linear-gradient(180deg, #546A82 0%, #4A6076 100%);
 }
 
 .gridRange::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: #4E657A;
     border: 1px solid #FFFFFF20;
     cursor: pointer;
+
+    box-shadow: 0 3px 6px rgba(20, 30, 45, 0.5), 0 0 4px rgba(74, 144, 226, 0.25);
 }
 
 .gridRange::-webkit-slider-thumb:hover {
@@ -79,8 +278,8 @@ body {
 }
 
 .gridRange::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: #4E657A;
     cursor: pointer;
