@@ -4,6 +4,8 @@ const allowedValues = Array.from(gridSizeSections.querySelectorAll('option')).ma
 
 const gridSizeLabel = document.getElementById("gridSizeLabel");
 
+let width = screen.width;
+
 gridSize.addEventListener('input', () => {
     let child = sketchContainer.lastElementChild;
 
@@ -19,7 +21,13 @@ gridSize.addEventListener('input', () => {
 
     gridSize.value = nearestValue;
 
-    let squareSize = 512 / gridSize.value;
+    let squareSize = 0;
+
+    if (width < 415) {
+        squareSize = 320 / gridSize.value;
+    } else {
+        squareSize = 512 / gridSize.value;
+    }
 
     for (let i = 0; i < gridSize.value; i++) {
         for (let j = 0; j < gridSize.value; j++) {

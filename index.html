@@ -6,22 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <title>Odin: Etch-A-Sketch Project</title>
+    <link rel="icon" href="./images/favicon.ico" />
 </head>
 
 <body>
     <main>
         <!-- Main screen -->
         <div id="mainScreen">
-            <h1 class="initialState headerAppearAnimation">Etch-a-Sketch</h1>
+            <h1 class="initialState headerAppearAnimation">Etch-a-Sketch <img src="./images/sketch.png"></h1>
 
             <div id="mainScreenText" class="mainScreenTextWrapper">
                 <p class="text initialState textAppear show">Draw it, color it, keep it!</p>
-                <p class="text initialState textAppear show">Design on a grid and save your artwork to your device in one tap.</p>
+                <p class="text initialState textAppear show">Design on a grid and save your artwork to your device in
+                    one tap.</p>
             </div>
 
-            <button id="startSketch" class="buttonStyle initialState buttonAppeareAnimation show">Start sketching</button>
+            <button id="startSketch" class="buttonStyle initialState buttonAppeareAnimation show">Start
+                sketching</button>
 
-            <p class="text initialState textAppear" id="textHint">Draw with a tap! Begin anywhere, pause and reposition, then tap again to resume.</p>
+            <p class="text initialState textAppear" id="textHint">Draw with a tap! Begin anywhere, pause and reposition,
+                then tap again to resume.</p>
         </div>
 
         <div id="gridMainScreen" class="inactive initialState gridScreen gridScreenAnimation">
@@ -33,7 +37,7 @@
                     <label for="'gridSize">Change grid size:</label>
                     <label for="gridSize"><span id="gridSizeLabel"></span></label>
                     <input type="range" id="gridSize" class="gridRange" list="stepList" min="4" max="64" value="4">
-                    <datalist id="stepList" class="desktop">
+                    <datalist id="stepList">
                         <option>4</option>
                         <option>8</option>
                         <option>16</option>
@@ -42,22 +46,25 @@
                     </datalist>
                 </div>
 
-                <button id="resetSketch" class="buttonStyle buttonClickAnimation">Reset sketch</button>
-
-                <button id="eraserButton" class="buttonStyle buttonClickAnimation"><span id="eraserButtonLabel">Erase</span></button>
-
-                <button id="exportButton" class="buttonStyle buttonClickAnimation">Export as Image</button>
-
                 <div class="colorPickerWrapper">
                     <label for="colorPicker">Color: </label>
                     <input type="color" value="blue" id="colorPicker" autocomplete="off">
                 </div>
+
+                <button id="resetSketch" class="buttonStyle buttonClickAnimation">Reset sketch</button>
+
+                <button id="eraserButton" class="buttonStyle buttonClickAnimation"><span
+                        id="eraserButtonLabel">Erase</span></button>
+
+                <button id="exportButton" class="buttonStyle buttonClickAnimation">Export as Image</button>
             </div>
         </div>
 
     </main>
 
     <footer>
+        <!-- Attribution -->
+        <p class="text" id="attribution">Icons designed by <a href="http://www.freepik.com/">Freepik</a></p>
         <p class="text" id="footerText">&#169; 2025 Copyright Valhstack</p>
     </footer>
 
