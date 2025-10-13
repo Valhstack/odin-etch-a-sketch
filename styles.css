@@ -307,7 +307,7 @@ label {
     background: #5A728C;
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 460px) {
     body {
         padding: 16px;
     }
