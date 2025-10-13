@@ -23,3 +23,14 @@ sketchGrid.addEventListener("pointerover", (event) => {
         event.target.style.opacity = "1";
     }
 })
+
+sketchGrid.addEventListener("pointermove", (event) => {
+    if (event.target.classList.contains('square') && hoverEnabled && !eraserEnabled) {
+        event.target.style.backgroundColor = color;
+        event.target.style.opacity = newOpacity;
+    }
+    else if (event.target.classList.contains('square') && hoverEnabled && eraserEnabled) {
+        event.target.style.backgroundColor = "#2c3e50";
+        event.target.style.opacity = "1";
+    }
+})
