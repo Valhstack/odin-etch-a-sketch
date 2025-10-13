@@ -28,6 +28,14 @@ sketchGrid.addEventListener("pointerdown", (event) => {
     let currentOpacity = parseFloat(event.target.style.opacity) || 0;
     let newOpacity = currentOpacity + 0.1;
 
+    if (newOpacity > 1) {
+        newOpacity = 1;
+    }
+
+    if (!colorPicked) {
+        color = "blue";
+    }
+
     if (event.target.classList.contains('square') && hoverEnabled && !eraserEnabled) {
         event.target.style.backgroundColor = color;
         event.target.style.opacity = newOpacity;
@@ -41,6 +49,14 @@ sketchGrid.addEventListener("pointerdown", (event) => {
 sketchGrid.addEventListener("pointermove", (event) => {
     let currentOpacity = parseFloat(event.target.style.opacity) || 0;
     let newOpacity = currentOpacity + 0.1;
+
+    if (newOpacity > 1) {
+        newOpacity = 1;
+    }
+
+    if (!colorPicked) {
+        color = "blue";
+    }
 
     if (event.target.classList.contains('square') && hoverEnabled && !eraserEnabled) {
         event.target.style.backgroundColor = color;
