@@ -1,7 +1,7 @@
 const sketchGrid = document.getElementById("sketchGrid");
 let hoverEnabled = false;
 
-sketchGrid.addEventListener("mouseover", (event) => {
+sketchGrid.addEventListener("pointerover", (event) => {
     if (!colorPicked) {
         color = "blue";
     }
