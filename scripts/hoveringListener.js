@@ -2,7 +2,7 @@ const sketchGrid = document.getElementById("sketchGrid");
 let hoverEnabled = false;
 let opacity = 0.1;
 
-sketchGrid.addEventListener("mouseover", (event) => {
+sketchGrid.addEventListener("pointerover", (event) => {
     let currentOpacity = parseFloat(event.target.style.opacity) || 0;
     let newOpacity = currentOpacity + 0.1;
 
