@@ -29,8 +29,7 @@ sketchGrid.addEventListener('pointerdown', e => {
 
 sketchGrid.addEventListener('pointermove', e => {
     if (!isTouchDrawing) return;
-    const el = document.elementFromPoint(e.clientX, e.clientY);
-    if (el) applyColor(el);
+    applyColor(e.target);
 });
 
 sketchGrid.addEventListener('pointerup', e => {
