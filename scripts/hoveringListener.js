@@ -11,7 +11,7 @@ function changeOpacity() {
     }
 }
 
-function handleMove(event) {
+/*function handleMove(event) {
     changeOpacity();
 
     if (!colorPicked) {
@@ -26,39 +26,35 @@ function handleMove(event) {
         event.target.style.backgroundColor = "#2c3e50";
         event.target.style.opacity = "1";
     }
-}
+}*/
 
 sketchGrid.addEventListener("pointerdown", (event) => {
-    if (event.pointerType === "touch") {
-        touchDrawing = true;
+    sketchGrid.setPointerCapture(event.pointerId);
 
-        sketchGrid.setPointerCapture(event.pointerId);
+    sketchGrid.onpointermove = function (event) {
+        if (!event.target.classList.contains("square")) return;
 
-        sketchGrid.onpointermove = function (event) {
-            if (!event.target.classList.contains("square")) return;
+        changeOpacity();
 
-            changeOpacity();
+        if (!colorPicked) {
+            color = "purple";
+        }
 
-            if (!colorPicked) {
-                color = "purple";
-            }
+        if (hoverEnabled && !eraserEnabled) {
+            event.target.style.backgroundColor = color;
+            event.target.style.opacity = newOpacity;
+        }
+        else if (hoverEnabled && eraserEnabled) {
+            event.target.style.backgroundColor = "#2c3e50";
+            event.target.style.opacity = "1";
+        }
+    };
 
-            if (hoverEnabled && !eraserEnabled) {
-                event.target.style.backgroundColor = color;
-                event.target.style.opacity = newOpacity;
-            }
-            else if (hoverEnabled && eraserEnabled) {
-                event.target.style.backgroundColor = "#2c3e50";
-                event.target.style.opacity = "1";
-            }
-        };
-
-        sketchGrid.onpointerdown = function (event) {
-            sketchGrid.onpointermove = null;
-            sketchGrid.onpointerup = null;
-            if (event.pointerType === "touch") {
-                touchDrawing = false;
-            }
+    sketchGrid.onpointerdown = function (event) {
+        sketchGrid.onpointermove = null;
+        sketchGrid.onpointerup = null;
+        if (event.pointerType === "touch") {
+            touchDrawing = false;
         }
     }
 })
@@ -84,8 +80,8 @@ sketchGrid.addEventListener("pointerdown", (event) => {
     }
 })*/
 
-sketchGrid.addEventListener('pointerup', (event) => {
+/*sketchGrid.addEventListener('pointerup', (event) => {
     if (event.pointerType === "touch") {
         touchDrawing = false;
     }
-})
+})*/
