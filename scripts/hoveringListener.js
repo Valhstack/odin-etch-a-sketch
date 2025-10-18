@@ -35,6 +35,8 @@ sketchGrid.addEventListener("pointerdown", (event) => {
         sketchGrid.setPointerCapture(event.pointerId);
 
         sketchGrid.onpointermove = function (event) {
+            if (!event.target.classList.contains("square")) return;
+            
             changeOpacity();
 
             if (!colorPicked) {
