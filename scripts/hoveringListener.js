@@ -12,6 +12,7 @@ function changeOpacity() {
 }
 
 function handleMove(event) {
+    
     changeOpacity();
 
     if (!colorPicked) {
