@@ -51,8 +51,6 @@ sketchGrid.addEventListener("pointerdown", (event) => {
     };
 
     sketchGrid.onpointerdown = function (event) {
-        sketchGrid.onpointermove = null;
-        sketchGrid.onpointerup = null;
         if (event.pointerType === "touch") {
             touchDrawing = false;
         }
