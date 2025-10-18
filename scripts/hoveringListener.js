@@ -36,7 +36,7 @@ sketchGrid.addEventListener("pointerdown", (event) => {
 
         sketchGrid.onpointermove = function (event) {
             if (!event.target.classList.contains("square")) return;
-            
+
             changeOpacity();
 
             if (!colorPicked) {
@@ -63,7 +63,7 @@ sketchGrid.addEventListener("pointerdown", (event) => {
     }
 })
 
-sketchGrid.addEventListener("pointermove", handleMove);
+//sketchGrid.addEventListener("pointermove", handleMove);
 
 /*sketchGrid.addEventListener("pointerover", (event) => {
     if (touchDrawing) {
