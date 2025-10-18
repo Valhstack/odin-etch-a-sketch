@@ -1,10 +1,10 @@
 const sketchGrid = document.getElementById("sketchGrid");
 let hoverEnabled = false, touchDrawing = false;
-let opacity = 0.1;
+let opacity = 0.1, newOpacity;
 
 function changeOpacity() {
     let currentOpacity = parseFloat(event.target.style.opacity) || 0;
-    let newOpacity = currentOpacity + 0.1;
+    newOpacity = currentOpacity + 0.1;
 
     if (newOpacity > 1) {
         newOpacity = 1;
@@ -12,7 +12,6 @@ function changeOpacity() {
 }
 
 function handleMove(event) {
-
     changeOpacity();
 
     if (!colorPicked) {
