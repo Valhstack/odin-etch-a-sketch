@@ -11,6 +11,39 @@ function changeOpacity() {
     }
 }
 
+let isDrawing = false;
+
+sketchGrid.addEventListener("pointerdown", e => {
+    const square = e.target.closest(".square");
+    if (!square) return;
+    isDrawing = true;
+    paintSquare(square);
+    sketchGrid.setPointerCapture(e.pointerId);
+});
+
+sketchGrid.addEventListener("pointermove", e => {
+    if (!isDrawing) return;
+    const square = e.target.closest(".square");
+    if (!square) return;
+    paintSquare(square);
+});
+
+sketchGrid.addEventListener("pointerup", e => {
+    isDrawing = false;
+    sketchGrid.releasePointerCapture(e.pointerId);
+});
+
+function paintSquare(square) {
+    if (!colorPicked) color = "purple";
+    if (hoverEnabled && !eraserEnabled) {
+        square.style.backgroundColor = color;
+        square.style.opacity = newOpacity;
+    } else if (hoverEnabled && eraserEnabled) {
+        square.style.backgroundColor = "#2c3e50";
+        square.style.opacity = "1";
+    }
+}
+
 /*function handleMove(event) {
     changeOpacity();
 
@@ -28,7 +61,7 @@ function changeOpacity() {
     }
 }*/
 
-sketchGrid.addEventListener("pointerdown", (event) => {
+/*sketchGrid.addEventListener("pointerdown", (event) => {
     sketchGrid.setPointerCapture(event.pointerId);
 
     sketchGrid.onpointermove = function (event) {
@@ -55,7 +88,7 @@ sketchGrid.addEventListener("pointerdown", (event) => {
             touchDrawing = false;
         }
     }
-})
+})*/
 
 //sketchGrid.addEventListener("pointermove", handleMove);
 

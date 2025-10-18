@@ -337,6 +337,11 @@ label {
         margin: 0;
 
         touch-action: none;
+        pointer-events: none;
+    }
+
+    .square{
+        pointer-events: all;
     }
 
     .gridScreen{
