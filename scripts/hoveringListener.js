@@ -12,13 +12,13 @@ function changeOpacity() {
 }
 
 function colorSquare(square) {
-    changeOpacity();
-
     if (!colorPicked) {
         color = "green";
     }
 
     if (hoverEnabled && !eraserEnabled) {
+        changeOpacity();
+
         square.style.backgroundColor = color;
         square.style.opacity = newOpacity;
     }
