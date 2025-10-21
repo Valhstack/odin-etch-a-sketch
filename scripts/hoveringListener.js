@@ -63,8 +63,28 @@ sketchGrid.addEventListener("pointerdown", (event) => {
 
 //sketchGrid.addEventListener("pointermove", handleMove);
 
-sketchGrid.addEventListener("pointerover", (event) => {
+function colorSquare(square) {
     changeOpacity();
+
+    if (!colorPicked) {
+        color = "green";
+    }
+
+    if (hoverEnabled && !eraserEnabled) {
+        square.style.backgroundColor = color;
+        square.style.opacity = newOpacity;
+    }
+    else if (hoverEnabled && eraserEnabled) {
+        square.style.backgroundColor = "#2c3e50";
+        square.style.opacity = "1";
+    }
+}
+
+sketchGrid.addEventListener("pointerover", (event) => {
+
+    colorSquare(event.target);
+    
+    /*changeOpacity();
 
     if (!colorPicked) {
         color = "green";
@@ -79,7 +99,7 @@ sketchGrid.addEventListener("pointerover", (event) => {
             event.target.style.backgroundColor = "#2c3e50";
             event.target.style.opacity = "1";
         }
-    }
+    }*/
 })
 
 sketchGrid.addEventListener('pointerup', (event) => {
