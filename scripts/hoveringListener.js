@@ -11,7 +11,6 @@ function changeOpacity() {
     }
 }
 
-
 /*function handleMove(event) {
     changeOpacity();
 
@@ -32,7 +31,9 @@ function changeOpacity() {
 sketchGrid.addEventListener("pointerdown", (event) => {
     sketchGrid.setPointerCapture(event.pointerId);
 
-    sketchGrid.onpointermove = function (event) {
+    touchDrawing = true;
+
+    /*sketchGrid.onpointermove = function (event) {
         if (!event.target.classList.contains("square")) return;
 
         changeOpacity();
@@ -55,17 +56,17 @@ sketchGrid.addEventListener("pointerdown", (event) => {
         if (event.pointerType === "touch") {
             touchDrawing = false;
         }
-    }
+    }*/
 })
 
 //sketchGrid.addEventListener("pointermove", handleMove);
 
-/*sketchGrid.addEventListener("pointerover", (event) => {
+sketchGrid.addEventListener("pointerover", (event) => {
     if (touchDrawing) {
         changeOpacity();
 
         if (!colorPicked) {
-            color = "red";
+            color = "green";
         }
 
         if (hoverEnabled && !eraserEnabled) {
@@ -77,10 +78,12 @@ sketchGrid.addEventListener("pointerdown", (event) => {
             event.target.style.opacity = "1";
         }
     }
-})*/
+})
 
-/*sketchGrid.addEventListener('pointerup', (event) => {
+sketchGrid.addEventListener('pointerup', (event) => {
     if (event.pointerType === "touch") {
         touchDrawing = false;
+
+        sketchGrid.releasePointerCapture(event.pointerId);
     }
-})*/
+})
