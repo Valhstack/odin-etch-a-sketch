@@ -82,7 +82,7 @@ function colorSquare(square) {
 
 sketchGrid.addEventListener("pointerover", (event) => {
 
-    colorSquare(event.target);
+    if(event.target.classList.contains("square")) colorSquare(event.target);
     
     /*changeOpacity();
 
