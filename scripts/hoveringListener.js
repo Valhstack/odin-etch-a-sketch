@@ -29,9 +29,11 @@ function changeOpacity() {
 }*/
 
 sketchGrid.addEventListener("pointerdown", (event) => {
-    sketchGrid.setPointerCapture(event.pointerId);
+    if (event.pointerType === "touch") {
+        sketchGrid.setPointerCapture(event.pointerId);
 
-    touchDrawing = true;
+        touchDrawing = true;
+    }
 
     /*sketchGrid.onpointermove = function (event) {
         if (!event.target.classList.contains("square")) return;
@@ -62,21 +64,19 @@ sketchGrid.addEventListener("pointerdown", (event) => {
 //sketchGrid.addEventListener("pointermove", handleMove);
 
 sketchGrid.addEventListener("pointerover", (event) => {
-    if (touchDrawing) {
-        changeOpacity();
+    changeOpacity();
 
-        if (!colorPicked) {
-            color = "green";
-        }
+    if (!colorPicked) {
+        color = "green";
+    }
 
-        if (hoverEnabled && !eraserEnabled) {
-            event.target.style.backgroundColor = color;
-            event.target.style.opacity = newOpacity;
-        }
-        else if (hoverEnabled && eraserEnabled) {
-            event.target.style.backgroundColor = "#2c3e50";
-            event.target.style.opacity = "1";
-        }
+    if (hoverEnabled && !eraserEnabled) {
+        event.target.style.backgroundColor = color;
+        event.target.style.opacity = newOpacity;
+    }
+    else if (hoverEnabled && eraserEnabled) {
+        event.target.style.backgroundColor = "#2c3e50";
+        event.target.style.opacity = "1";
     }
 })
 
