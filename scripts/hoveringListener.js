@@ -28,7 +28,7 @@ function colorSquare(square) {
         square.style.backgroundColor = color;
         square.style.opacity = newOpacity;
     }
-    else{
+    else if ((hoverEnabled || touchDrawing) && eraserEnabled){
         square.style.backgroundColor = "#2c3e50";
         square.style.opacity = "1";
         AddCSSClass("erased", square);
