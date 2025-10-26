@@ -6,6 +6,7 @@ document.getElementById("resetSketch").addEventListener('click', () => {
     gridSize.value = 4;
     gridSizeLabel.textContent = gridSize.value + " x " + gridSize.value;
     document.getElementById("colorPicker").value = "#0077b6";
+    colorPicked = false;
 
     let child = sketchContainer.lastElementChild;
 
