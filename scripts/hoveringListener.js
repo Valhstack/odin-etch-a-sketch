@@ -27,7 +27,7 @@ function changeOpacity(square) {
 }
 function colorSquare(square) {
     if (!colorPicked) {
-        color = "pink";
+        color = "#0077b6";
     }
 
     if (hoverEnabled || touchDrawing) {
