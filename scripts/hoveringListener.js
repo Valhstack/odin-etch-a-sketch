@@ -13,7 +13,7 @@ function changeOpacity() {
 
 function colorSquare(square) {
     if (!colorPicked) {
-        color = "green";
+        color = "pink";
     }
 
     if (!eraserEnabled) {
