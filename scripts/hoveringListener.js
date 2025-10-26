@@ -1,9 +1,13 @@
 const sketchGrid = document.getElementById("sketchGrid");
 let hoverEnabled = false, touchDrawing = false;
-let opacity = 0.1, newOpacity;
+let opacity = 0.1, newOpacity, lastSquare = null;
 
-function changeOpacity() {
-    let currentOpacity = parseFloat(event.target.style.opacity) || 0;
+function changeOpacity(square) {
+    let currentOpacity = parseFloat(square.style.opacity) || 0;
+
+    if(currentOpacity === 1){
+        currentOpacity = 0
+    }
     newOpacity = currentOpacity + 0.1;
 
     if (newOpacity > 1) {
@@ -12,12 +16,16 @@ function changeOpacity() {
 }
 
 function colorSquare(square) {
+    console.log("Inside color square")
+    
     if (!colorPicked) {
         color = "pink";
+
+        console.log("Color set")
     }
 
     if (!eraserEnabled) {
-        changeOpacity();
+        changeOpacity(square);
 
         square.style.backgroundColor = color;
         square.style.opacity = newOpacity;
@@ -28,39 +36,34 @@ function colorSquare(square) {
     }
 }
 
-function getSquareUnderPointer(x, y) {
-    const rect = sketchGrid.getBoundingClientRect();
-    const relX = x - rect.left;
-    const relY = y - rect.top;
-
-    const squareWidth = sketchGrid.children[0].offsetWidth;
-    const squareHeight = sketchGrid.children[0].offsetHeight;
-    const numCols = sketchGrid.style.gridTemplateColumns.split(" ").length;
-
-    const col = Math.floor(relX / squareWidth);
-    const row = Math.floor(relY / squareHeight);
-    const index = row * numCols + col;
-
-    return sketchGrid.children[index];
-}
-
-
-// pointer down starts drawing
 sketchGrid.addEventListener("pointerdown", (event) => {
     touchDrawing = true;
     sketchGrid.setPointerCapture(event.pointerId);
-    colorSquareUnderPointer(event);
+
+    const square = document.elementFromPoint(event.clientX, event.clientY);
+
+    if(square && square.classList.contains("square")){
+        lastSquare = square;
+        colorSquare(square);
+    }
+
+    console.log("Last square ", lastSquare, " current square ", square);
 });
 
-// pointer move colors while dragging
 sketchGrid.addEventListener("pointermove", (event) => {
-    if (!hoverEnabled) return;
-    const square = getSquareUnderPointer(event.clientX, event.clientY);
+    const square = document.elementFromPoint(event.clientX, event.clientY);
+
+    if(!square || !square.classList.contains("square")) return;
+    
+    if(square === lastSquare) return;
+
+    lastSquare = square;
+
     colorSquare(square);
 });
 
-// pointer up stops drawing
 sketchGrid.addEventListener("pointerup", (event) => {
     touchDrawing = false;
+    lastSquare = null;
     sketchGrid.releasePointerCapture(event.pointerId);
 });
