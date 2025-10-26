@@ -16,29 +16,50 @@ function colorSquare(square) {
         color = "green";
     }
 
-    if (hoverEnabled && !eraserEnabled) {
+    if (!eraserEnabled) {
         changeOpacity();
 
         square.style.backgroundColor = color;
         square.style.opacity = newOpacity;
     }
-    else if (hoverEnabled && eraserEnabled) {
+    else {
         square.style.backgroundColor = "#2c3e50";
         square.style.opacity = "1";
     }
 }
 
+function colorSquareUnderPointer(event) {
+    const rect = sketchGrid.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const squareWidth = sketchGrid.children[0].offsetWidth;
+    const squareHeight = sketchGrid.children[0].offsetHeight;
+    const numCols = sketchGrid.style.gridTemplateColumns.split(" ").length;
+
+    const col = Math.floor(x / squareWidth);
+    const row = Math.floor(y / squareHeight);
+    const index = row * numCols + col;
+
+    const square = sketchGrid.children[index];
+    colorSquare(square);
+}
+
+// pointer down starts drawing
+sketchGrid.addEventListener("pointerdown", (event) => {
+    touchDrawing = true;
+    sketchGrid.setPointerCapture(event.pointerId);
+    colorSquareUnderPointer(event);
+});
+
+// pointer move colors while dragging
 sketchGrid.addEventListener("pointermove", (event) => {
-    if (event.target.classList.contains("square")) {
-        colorSquare(event.target);
-        console.log("X: ", event.clientX, " Y: ", event.clientY);
-    }
-})
+    if (!touchDrawing) return;
+    colorSquareUnderPointer(event);
+});
 
-sketchGrid.addEventListener('pointerup', (event) => {
-    if (event.pointerType === "touch") {
-        touchDrawing = false;
-
-        sketchGrid.releasePointerCapture(event.pointerId);
-    }
-})
+// pointer up stops drawing
+sketchGrid.addEventListener("pointerup", (event) => {
+    touchDrawing = false;
+    sketchGrid.releasePointerCapture(event.pointerId);
+});
