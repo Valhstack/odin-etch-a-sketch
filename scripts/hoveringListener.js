@@ -5,9 +5,11 @@ let opacity = 0.1, newOpacity, lastSquare = null;
 function changeOpacity(square) {
     let currentOpacity = parseFloat(square.style.opacity) || 0;
 
-    if(currentOpacity === 1){
-        currentOpacity = 0
+    if(currentOpacity === 1 && square.classList.contains("erased")){
+        currentOpacity = 0;
+        RemoveCSSClass("erased", square);
     }
+    
     newOpacity = currentOpacity + 0.1;
 
     if (newOpacity > 1) {
@@ -15,24 +17,21 @@ function changeOpacity(square) {
     }
 }
 
-function colorSquare(square) {
-    console.log("Inside color square")
-    
+function colorSquare(square) {    
     if (!colorPicked) {
         color = "pink";
-
-        console.log("Color set")
     }
 
-    if (!eraserEnabled) {
+    if ((hoverEnabled || touchDrawing) && !eraserEnabled) {
         changeOpacity(square);
 
         square.style.backgroundColor = color;
         square.style.opacity = newOpacity;
     }
-    else {
+    else{
         square.style.backgroundColor = "#2c3e50";
         square.style.opacity = "1";
+        AddCSSClass("erased", square);
     }
 }
 
@@ -46,8 +45,6 @@ sketchGrid.addEventListener("pointerdown", (event) => {
         lastSquare = square;
         colorSquare(square);
     }
-
-    console.log("Last square ", lastSquare, " current square ", square);
 });
 
 sketchGrid.addEventListener("pointermove", (event) => {
